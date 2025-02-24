@@ -1,21 +1,15 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Feb 23 13:37:54 2025
 
-@author: d_par
 
-"""
 
-from Team_Name_Formatting import standardize_team_name
 import pandas as pd
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 import plotly.express as px
 import plotly.graph_objects as go
-import warnings
+
 
 
 # Function to analyze xG vs Possession (Separate Home & Away Charts)
