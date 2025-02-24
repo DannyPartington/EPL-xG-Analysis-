@@ -18,8 +18,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Add Additional_Scripts to the Python path
 sys.path.append(BASE_DIR)
 
-# 
-from App_Functions import (
+from Additional_Scripts.App_Functions import  (
     analyze_xg_vs_possession, analyze_xg_vs_formation,
     analyze_xg_vs_shots, analyze_xg_vs_month, analyze_xg_vs_time
 )
