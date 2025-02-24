@@ -70,4 +70,9 @@ def update_charts(team):
 server = app.server  # Required for Render
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8054)
+    app.run_server(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
+    
+    
+
+    
+    
