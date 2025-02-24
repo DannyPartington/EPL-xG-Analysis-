@@ -2,7 +2,6 @@ dash
 plotly
 pandas
 numpy
-scikit-learn
+scikit-learn==1.6.1
 gunicorn
-os
 flask
