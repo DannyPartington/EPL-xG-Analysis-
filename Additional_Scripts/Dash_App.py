@@ -9,12 +9,22 @@ import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
+import sys
 import os
-from App_Functions import (analyze_xg_vs_possession, analyze_xg_vs_formation,
-                           analyze_xg_vs_shots, analyze_xg_vs_month, analyze_xg_vs_time)
+
+# Get the directory of the current script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Add Additional_Scripts to the Python path
+sys.path.append(BASE_DIR)
+
+# 
+from App_Functions import (
+    analyze_xg_vs_possession, analyze_xg_vs_formation,
+    analyze_xg_vs_shots, analyze_xg_vs_month, analyze_xg_vs_time
+)
 
 
-# Get the absolute path of the current notebook/script to read the data in
 file_path = os.path.join(os.path.dirname(__file__), "..", "Data", "team_data.csv")
 team_data = pd.read_csv(file_path)
 
