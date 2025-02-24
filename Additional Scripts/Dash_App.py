@@ -9,10 +9,16 @@ import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
+import os
 from App_Functions import (analyze_xg_vs_possession, analyze_xg_vs_formation,
                            analyze_xg_vs_shots, analyze_xg_vs_month, analyze_xg_vs_time)
 
-team_data = pd.read_csv(r'C:\Users\d_par\OneDrive\Desktop\Danny\2025\Data Science\Portolio Projects\prem-xg-analysis\Notebooks')
+
+# Get the absolute path of the current notebook/script to read the data in
+file_path = os.path.join(os.path.dirname(__file__), "..", "Data", "team_data.csv")
+team_data = pd.read_csv(file_path)
+
+
 
 teams = sorted(team_data['Home'].unique())
 
@@ -61,6 +67,7 @@ def update_charts(team):
     return fig_home, fig_away, fig2, fig3, fig4, fig5
 
 
+server = app.server  # Required for Render
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8052)
+    app.run_server(debug=True, port=8054)
