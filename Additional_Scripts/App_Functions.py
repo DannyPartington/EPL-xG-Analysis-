@@ -127,7 +127,7 @@ def plot_home_vs_away_xg(avg_xg, shorten_team_name):
     - None (displays the plot).
     """
 
-    fig = go.Figure())
+    fig = go.Figure()
     fig = px.scatter(x=avg_xg['Avg_Home_xg'], y=avg_xg['Avg_Away_xg'])
 
     # Add text annotations with team abbreviations
@@ -173,7 +173,7 @@ def plot_home_vs_away_xGA(avg_xGA, shorten_team_name):
     - None (displays the plot).
     """
 
-    fig = go.Figure())
+    fig = go.Figure()
 
     plt.scatter(
         avg_xGA['Avg_Home_xGA'], avg_xGA['Avg_Away_xGA'],
@@ -393,7 +393,7 @@ def plot_pl_vs_xg_ranking(xg_goal_table, league_table):
     team_ratio_stats['Numeric Y'] = range(len(team_ratio_stats), 0, -1)
 
     # ✅ Create the dot plot
-    fig = go.Figure())
+    fig = go.Figure()
 
     # ✅ Draw arrows indicating changes between rankings
     for _, row in team_ratio_stats.iterrows():
