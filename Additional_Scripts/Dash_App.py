@@ -50,6 +50,8 @@ app.layout = dbc.Container([
     Input('tabs', 'value')
 )
 def render_content(tab):
+    print(f"Tab clicked: {tab}")  # Debugging line to check tab switching in logs
+
     if tab == 'xg-error':
         return dbc.Container([
             html.H1("xG Error Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
