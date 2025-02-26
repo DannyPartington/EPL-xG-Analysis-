@@ -46,7 +46,7 @@ def plot_xg_error_vs_total_goals(df):
     # Calculate correlation between Total Goals and xG Error
     correlation = df['Total Goals'].corr(df['xG - goals'])
 
-    fig = go.Figure())
+    fig = go.Figure()
     ax = sns.histplot(
         data=df,
         x='Total Goals',
