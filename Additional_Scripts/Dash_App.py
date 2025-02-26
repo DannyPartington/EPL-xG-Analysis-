@@ -35,14 +35,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Construct absolute paths for data files
 file_path1 = os.path.join(BASE_DIR, '..', 'Data', 'team_data.csv')
-file_path2 = os.path.join(BASE_DIR, '..', 'Data', 'cleansed_prem_data.csv')
+file_path2 = os.path.join(BASE_DIR, '..', 'Data', 'cleaned_prem_data.csv')
 file_path3 = os.path.join(BASE_DIR, '..', 'Data', 'avg_xg_table.csv')
 file_path4 = os.path.join(BASE_DIR, '..', 'Data', 'avg_xga_table.csv')
 file_path5 = os.path.join(BASE_DIR, '..', 'Data', 'Rankings.csv')
 
 # Load data
 team_data = pd.read_csv(file_path1)
-cleansed_prem_data = pd.read_csv(file_path2)
+cleaned_prem_data = pd.read_csv(file_path2)
 avg_xG = pd.read_csv(file_path3)
 avg_xGA = pd.read_csv(file_path4)
 league_table = pd.read_csv(file_path5)
@@ -68,27 +68,27 @@ def render_content(tab):
     if tab == 'xg-error':
         return dbc.Container([
             html.H1("xG Error Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
-            dcc.Graph(figure=plot_xg_error_histogram(cleansed_prem_data)),
-            dcc.Graph(figure=plot_xg_error_vs_total_goals(cleansed_prem_data))
+            dcc.Graph(figure=plot_xg_error_histogram(cleaned_prem_data)),
+            dcc.Graph(figure=plot_xg_error_vs_total_goals(cleaned_prem_data))
         ])
     elif tab == 'xg-league-table':
         return dbc.Container([
             html.H1("xG League Table", style={'textAlign': 'center', 'color': '#17a2b8'}),
-            dcc.Graph(figure=style_xg_league_table(calculate_xg_league_table(cleansed_prem_data)))
+            dcc.Graph(figure=style_xg_league_table(calculate_xg_league_table(cleaned_prem_data)))
         ])
     elif tab == 'league-xg-analysis':
         return dbc.Container([
             html.H1("League-Wide xG Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
             dcc.Graph(figure=plot_home_vs_away_xg(avg_xG)),
             dcc.Graph(figure=plot_home_vs_away_xGA(avg_xGA)),
-            dcc.Graph(figure=plot_pl_vs_xg_ranking(calculate_xg_to_goals(cleansed_prem_data), league_table)),
+            dcc.Graph(figure=plot_pl_vs_xg_ranking(calculate_xg_to_goals(cleaned_prem_data), league_table)),
             dcc.Graph(figure=merge_and_rank_xg(avg_xG, avg_xGA)),
             dcc.Graph(figure=style_xg_rankings(merge_and_rank_xg(avg_xG, avg_xGA)))
         ])
     else:
         return dbc.Container([
             html.H1("Team xG Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
-            dcc.Graph(figure=generate_xg_summary_table(cleansed_prem_data))
+            dcc.Graph(figure=generate_xg_summary_table(cleaned_prem_data))
         ])
 
 server = app.server
