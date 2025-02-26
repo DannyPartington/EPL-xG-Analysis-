@@ -14,86 +14,81 @@ Created on Sun Feb 23 13:44:53 2025
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
+import dash_bootstrap_components as dbc
 import pandas as pd
-import dash_bootstrap_components as dbc  # Import Bootstrap components
-import sys
-import os
-
-# Get the directory of the current script
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Add Additional_Scripts to the Python path
-sys.path.append(BASE_DIR)
-
 from Additional_Scripts.App_Functions import (
-    analyze_xg_vs_possession, analyze_xg_vs_formation,
-    analyze_xg_vs_shots, analyze_xg_vs_month, analyze_xg_vs_time
+    plot_xg_error_histogram, plot_xg_error_vs_total_goals,
+    calculate_xg_league_table, calculate_xg_to_goals, style_xg_to_goals_table,
+    merge_and_rank_xg, style_xg_rankings,
+    plot_home_vs_away_xg, plot_home_vs_away_xGA, plot_pl_vs_xg_ranking,
+    generate_xg_summary_table
 )
+
+# Initialize Dash app with Bootstrap (Dark Theme)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
 # Load Data
-file_path = os.path.join(os.path.dirname(__file__), "..", "Data", "team_data.csv")
-team_data = pd.read_csv(file_path)
-
+file_path1 = "../Data/team_data.csv"
+team_data = pd.read_csv(file_path1)
 teams = sorted(team_data['Home'].unique())
 
-# Initialize Dash app with Bootstrap
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])  # Use CYBORG theme for modern look
+file_path2 = "../Data/cleansed_prem_data.csv"
+cleansed_prem_data = pd.read_csv(file_path2)
 
-# Layout
+file_path3 = "../Data/avg_xg_table.csv"
+avg_xG = pd.read_csv(file_path3)
+
+file_path4 = "../Data/avg_xga_table.csv"
+avg_xGA = pd.read_csv(file_path4)
+
+file_path5 = "../Data/Rankings.csv"
+league_table = pd.read_csv(file_path5)
+
+# Define Tabs
 app.layout = dbc.Container([
-    # Title
-    dbc.Row([
-        dbc.Col(html.H1("Premier League xG Analysis", 
-                        style={'textAlign': 'center', 'marginTop': '20px', 'color': '#17a2b8'}), 
-                width=12)
-    ]),
+    dcc.Tabs(id="tabs", value='team-xg-analysis', children=[
+        dcc.Tab(label='Team xG Analysis', value='team-xg-analysis', style={'backgroundColor': '#1e1e1e', 'color': 'white'}),
+        dcc.Tab(label='xG Error', value='xg-error', style={'backgroundColor': '#1e1e1e', 'color': 'white'}),
+        dcc.Tab(label='xG League Table', value='xg-league-table', style={'backgroundColor': '#1e1e1e', 'color': 'white'}),
+        dcc.Tab(label='League xG Analysis', value='league-xg-analysis', style={'backgroundColor': '#1e1e1e', 'color': 'white'})
+    ], colors={"border": "#17a2b8", "primary": "#17a2b8", "background": "#121212"}),
+    
+    html.Div(id='page-content')
+], fluid=True, style={'backgroundColor': '#121212', 'padding': '20px'})
 
-    # Dropdown Selection
-    dbc.Row([
-        dbc.Col(html.Label("Select a Team:", style={'fontSize': '20px', 'color': 'white'}), width=2),
-        dbc.Col(dcc.Dropdown(
-            id='team-selector',
-            options=[{'label': team, 'value': team} for team in teams],
-            value=teams[0],  
-            clearable=False,
-            style={'color': 'black'}
-        ), width=4)
-    ], justify='center', style={'marginBottom': '20px'}),
-
-    # Grid Layout for Charts (2x3 Layout)
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='xg-vs-possession-home', style={'height': '350px'}), width=6),
-        dbc.Col(dcc.Graph(id='xg-vs-possession-away', style={'height': '350px'}), width=6),
-    ]),
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='xg-vs-formation', style={'height': '350px'}), width=6),
-        dbc.Col(dcc.Graph(id='xg-vs-shots', style={'height': '350px'}), width=6),
-    ]),
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='xg-vs-month', style={'height': '350px'}), width=6),
-        dbc.Col(dcc.Graph(id='xg-vs-time', style={'height': '350px'}), width=6),
-    ]),
-], fluid=True, style={'backgroundColor': '#121212', 'padding': '20px'})  # Dark Background
-
-# Callbacks
+# Define Callbacks to Load Pages
 @app.callback(
-    Output('xg-vs-possession-home', 'figure'),
-    Output('xg-vs-possession-away', 'figure'),
-    Output('xg-vs-formation', 'figure'),
-    Output('xg-vs-shots', 'figure'),
-    Output('xg-vs-month', 'figure'),
-    Output('xg-vs-time', 'figure'),
-    Input('team-selector', 'value')
+    Output('page-content', 'children'),
+    Input('tabs', 'value')
 )
-def update_charts(team):
-    fig_home, fig_away = analyze_xg_vs_possession(team, team_data)
-    fig2 = analyze_xg_vs_formation(team, team_data)
-    fig3 = analyze_xg_vs_shots(team, team_data)
-    fig4 = analyze_xg_vs_month(team, team_data)
-    fig5 = analyze_xg_vs_time(team, team_data)
-    return fig_home, fig_away, fig2, fig3, fig4, fig5
+def render_content(tab):
+    if tab == 'xg-error':
+        return dbc.Container([
+            html.H1("xG Error Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
+            dcc.Graph(figure=plot_xg_error_histogram(cleansed_prem_data)),
+            dcc.Graph(figure=plot_xg_error_vs_total_goals(cleansed_prem_data))
+        ])
+    elif tab == 'xg-league-table':
+        return dbc.Container([
+            html.H1("xG League Table", style={'textAlign': 'center', 'color': '#17a2b8'}),
+            dcc.Graph(figure=style_xg_league_table(calculate_xg_league_table(cleansed_prem_data)))
+        ])
+    elif tab == 'league-xg-analysis':
+        return dbc.Container([
+            html.H1("League-Wide xG Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
+            dcc.Graph(figure=plot_home_vs_away_xg(avg_xG)),
+            dcc.Graph(figure=plot_home_vs_away_xGA(avg_xGA)),
+            dcc.Graph(figure=plot_pl_vs_xg_ranking(calculate_xg_to_goals(cleansed_prem_data), league_table)),
+            dcc.Graph(figure=merge_and_rank_xg(avg_xG, avg_xGA)),
+            dcc.Graph(figure=style_xg_rankings(merge_and_rank_xg(avg_xG, avg_xGA)))
+        ])
+    else:
+        return dbc.Container([
+            html.H1("Team xG Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
+            dcc.Graph(figure=generate_xg_summary_table(cleansed_prem_data))
+        ])
 
-server = app.server  # Required for Render
+server = app.server
 
 if __name__ == '__main__':
     app.run_server(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
