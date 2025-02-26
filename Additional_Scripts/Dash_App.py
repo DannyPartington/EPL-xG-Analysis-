@@ -50,20 +50,25 @@ app.layout = dbc.Container([
     Input('tabs', 'value')
 )
 def render_content(tab):
-    print(f"Tab clicked: {tab}")  # Debugging line to check tab switching in logs
-
+    print(f"Tab clicked: {tab}")  # Debug which tab is clicked
+    
     if tab == 'xg-error':
+        print("Loading xG Error tab...")
         return dbc.Container([
             html.H1("xG Error Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
             dcc.Graph(figure=plot_xg_error_histogram(cleaned_prem_data)),
             dcc.Graph(figure=plot_xg_error_vs_total_goals(cleaned_prem_data))
         ])
+    
     elif tab == 'xg-league-table':
+        print("Loading xG League Table tab...")
         return dbc.Container([
             html.H1("xG League Table", style={'textAlign': 'center', 'color': '#17a2b8'}),
             dash_table.DataTable(style_xg_league_table(calculate_xg_league_table(cleaned_prem_data)))
         ])
+    
     elif tab == 'league-xg-analysis':
+        print("Loading League xG Analysis tab...")
         return dbc.Container([
             html.H1("League-Wide xG Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
             dcc.Graph(figure=plot_home_vs_away_xg(avg_xG)),
@@ -72,11 +77,14 @@ def render_content(tab):
             dash_table.DataTable(merge_and_rank_xg(avg_xG, avg_xGA)),
             dash_table.DataTable(style_xg_rankings(merge_and_rank_xg(avg_xG, avg_xGA)))
         ])
+    
     else:
+        print("Loading Team xG Analysis tab...")
         return dbc.Container([
             html.H1("Team xG Analysis", style={'textAlign': 'center', 'color': '#17a2b8'}),
             dash_table.DataTable(generate_xg_summary_table(cleaned_prem_data))
         ])
+
 
 server = app.server
 
