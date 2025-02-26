@@ -12,6 +12,7 @@ Created on Sun Feb 23 13:44:53 2025
 """
 
 import dash
+import os
 from dash import dcc, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
@@ -21,27 +22,29 @@ from Additional_Scripts.App_Functions import (
     calculate_xg_league_table, calculate_xg_to_goals, style_xg_to_goals_table,
     merge_and_rank_xg, style_xg_rankings,
     plot_home_vs_away_xg, plot_home_vs_away_xGA, plot_pl_vs_xg_ranking,
-    generate_xg_summary_table
+    style_xg_league_table, generate_xg_summary_table
 )
+
+
 
 # Initialize Dash app with Bootstrap (Dark Theme)
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
-# Load Data
-file_path1 = "../Data/team_data.csv"
+# Get the absolute path to the directory containing Dash_App.py
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Construct absolute paths for data files
+file_path1 = os.path.join(BASE_DIR, '..', 'Data', 'team_data.csv')
+file_path2 = os.path.join(BASE_DIR, '..', 'Data', 'cleansed_prem_data.csv')
+file_path3 = os.path.join(BASE_DIR, '..', 'Data', 'avg_xg_table.csv')
+file_path4 = os.path.join(BASE_DIR, '..', 'Data', 'avg_xga_table.csv')
+file_path5 = os.path.join(BASE_DIR, '..', 'Data', 'Rankings.csv')
+
+# Load data
 team_data = pd.read_csv(file_path1)
-teams = sorted(team_data['Home'].unique())
-
-file_path2 = "../Data/cleansed_prem_data.csv"
 cleansed_prem_data = pd.read_csv(file_path2)
-
-file_path3 = "../Data/avg_xg_table.csv"
 avg_xG = pd.read_csv(file_path3)
-
-file_path4 = "../Data/avg_xga_table.csv"
 avg_xGA = pd.read_csv(file_path4)
-
-file_path5 = "../Data/Rankings.csv"
 league_table = pd.read_csv(file_path5)
 
 # Define Tabs
