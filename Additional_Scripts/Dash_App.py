@@ -4,7 +4,7 @@ from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
-from Additional_Scripts.App_Functions import (
+from App_Functions import (
     plot_xg_error_histogram, plot_xg_error_vs_total_goals,
     calculate_xg_league_table, calculate_xg_to_goals, style_xg_to_goals_table,
     merge_and_rank_xg, style_xg_rankings,
@@ -59,7 +59,13 @@ def render_content(tab):
     elif tab == 'xg-league-table':
         return dbc.Container([
             html.H1("xG League Table", style={'textAlign': 'center', 'color': '#17a2b8'}),
-            dash_table.DataTable(style_xg_league_table(calculate_xg_league_table(cleaned_prem_data)))
+            dash_table.DataTable(
+                data=calculate_xg_league_table(cleaned_prem_data),  
+                columns=[{"name": col, "id": col} for col in cleaned_prem_data.columns],
+                style_table={'overflowX': 'auto', 'margin': '20px'},
+                style_header={'backgroundColor': '#343a40', 'color': 'white', 'fontWeight': 'bold'},
+                style_cell={'backgroundColor': '#1e1e1e', 'color': 'white', 'textAlign': 'center'}
+            )
         ])
     elif tab == 'league-xg-analysis':
         return dbc.Container([

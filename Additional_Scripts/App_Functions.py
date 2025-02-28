@@ -22,8 +22,11 @@ def plot_xg_error_vs_total_goals(df):
 def calculate_xg_league_table(df):
     home_stats = df.groupby('Home').agg({'xG - goals': 'sum'}).reset_index().rename(columns={'Home': 'Team'})
     away_stats = df.groupby('Away').agg({'xG - goals': 'sum'}).reset_index().rename(columns={'Away': 'Team'})
+    
     team_stats = pd.concat([home_stats, away_stats]).groupby('Team').sum().reset_index()
-    return team_stats
+
+    return team_stats.to_dict('records')  # ✅ Converts DataFrame directly for Dash
+
 
 def style_xg_league_table(df):
     return df.to_dict('records')
