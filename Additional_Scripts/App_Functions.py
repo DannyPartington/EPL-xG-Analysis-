@@ -36,13 +36,13 @@ def style_xg_to_goals_table(df):
     return df.to_dict('records')
 
 def plot_home_vs_away_xg(df):
-    fig = px.scatter(df, x='Home_xg', y='Away_xg', text='Home', title='Home vs Away xG')
+    fig = px.scatter(df, x='Avg_Home_xg', y='Avg_Away_xg', text='Home', title='Home vs Away xG')
     fig.update_traces(textposition='top center')
     fig.update_layout(template='plotly_dark', plot_bgcolor='black', paper_bgcolor='black', font=dict(color='white'))
     return fig
 
 def plot_home_vs_away_xGA(df):
-    fig = px.scatter(df, x='Home_xg', y='Away_xg', text='Home', title='Home vs Away xGA', color_discrete_sequence=['red'])
+    fig = px.scatter(df, x='Avg_Home_xGA', y='Avg_Away_xGA', text='Home', title='Home vs Away xGA', color_discrete_sequence=['red'])
     fig.update_traces(textposition='top center')
     fig.update_layout(template='plotly_dark', plot_bgcolor='black', paper_bgcolor='black', font=dict(color='white'))
     return fig
