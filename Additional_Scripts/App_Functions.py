@@ -29,20 +29,20 @@ def style_xg_league_table(df):
     return df.to_dict('records')
 
 def calculate_xg_to_goals(df):
-    df['xG to Goals Ratio'] = df['Total xG'] / df['Total Goals']
+    df['xG to Goals Ratio'] = df['Total xG'] / df['Total Goals'].replace(0, 1)
     return df[['Home', 'Total Goals', 'Total xG', 'xG to Goals Ratio']].rename(columns={'Home': 'Team'}).sort_values(by='xG to Goals Ratio', ascending=False)
 
 def style_xg_to_goals_table(df):
     return df.to_dict('records')
 
 def plot_home_vs_away_xg(df):
-    fig = px.scatter(df, x='Avg_Home_xg', y='Avg_Away_xg', text='Home', title='Home vs Away xG')
+    fig = px.scatter(df, x='Avg_Home_xg', y='Avg_Away_xg', text='Team', title='Home vs Away xG')
     fig.update_traces(textposition='top center')
     fig.update_layout(template='plotly_dark', plot_bgcolor='black', paper_bgcolor='black', font=dict(color='white'))
     return fig
 
 def plot_home_vs_away_xGA(df):
-    fig = px.scatter(df, x='Avg_Home_xGA', y='Avg_Away_xGA', text='Home', title='Home vs Away xGA', color_discrete_sequence=['red'])
+    fig = px.scatter(df, x='Avg_Home_xGA', y='Avg_Away_xGA', text='Team', title='Home vs Away xGA', color_discrete_sequence=['red'])
     fig.update_traces(textposition='top center')
     fig.update_layout(template='plotly_dark', plot_bgcolor='black', paper_bgcolor='black', font=dict(color='white'))
     return fig
@@ -58,9 +58,28 @@ def plot_pl_vs_xg_ranking(xg_table, league_table):
                       font=dict(color='white'))
     return fig
 
-def merge_and_rank_xg(avg_xG, avg_xGA):
-    merged_df = avg_xG.merge(avg_xGA, on='Team', how='inner')
-    return merged_df
+def merge_and_rank_xg(avg_xg, avg_xGA):
+    # ✅ Step 1: Merge xG Created & xG Conceded DataFrames
+   xg_combined = avg_xg.merge(avg_xGA, on=['Team', 'Ranking'], how='inner')
+
+   # ✅ Step 2: Assign Rankings for xG and xGA
+   xg_combined['Rank_Home_xG'] = xg_combined['Avg_Home_xg'].rank(ascending=False, method='min')
+   xg_combined['Rank_Away_xG'] = xg_combined['Avg_Away_xg'].rank(ascending=False, method='min')
+   xg_combined['Rank_Home_xGA'] = xg_combined['Avg_Home_xGA'].rank(ascending=True, method='min')  # Lower is better
+   xg_combined['Rank_Away_xGA'] = xg_combined['Avg_Away_xGA'].rank(ascending=True, method='min')  # Lower is better
+
+   # ✅ Step 3: Convert Rankings to Integers
+   xg_combined[['Rank_Home_xG', 'Rank_Away_xG', 'Rank_Home_xGA', 'Rank_Away_xGA']] = xg_combined[
+       ['Rank_Home_xG', 'Rank_Away_xG', 'Rank_Home_xGA', 'Rank_Away_xGA']
+   ].astype(int)
+
+   # ✅ Step 4: Select Only Required Columns Before Styling
+   xg_combined = xg_combined[['Ranking', 'Team', 'Rank_Home_xG', 'Rank_Away_xG', 'Rank_Home_xGA', 'Rank_Away_xGA']]
+
+   # ✅ Step 5: Sort the Table by Actual League Ranking
+   xg_combined = xg_combined.sort_values(by='Ranking', ascending=True).reset_index(drop=True)
+
+   return xg_combined  # Returning cleaned dataframe to be styled separately
 
 def style_xg_rankings(df):
     return df.to_dict('records')
