@@ -285,17 +285,17 @@ def render_content(pathname):
                 "."
             ], style={'color': 'white', 'marginTop': '15px'}),
             
-            html.H3("Whats Next?", style={'color': '#17a2b8', 'marginTop': '30px'}),
+            html.H3("Future Work", style={'color': '#17a2b8', 'marginTop': '30px'}),
             html.Ul([
                 html.Li("Compare year-to-year xG League Tables vs actual standings to assess whether xG can be used as a predictive indicator of form shifts."),
                 html.Li("Player-specific xG analysis, assigning ratings based on over- or under-performance.."),
-                html.Li("Integrate multi-season trends to see if teams consistently beat or fall short of xG expectations."),
+                html.Li("Integrate multi-season trends for long term analysis and progression"),
             ], style={'color': 'white'}),
             
             html.H3("Application", style={'color': '#17a2b8', 'marginTop': '30px'}),
             html.Ul([
-                html.Li("New, sophisticated mastchday metricss reliability must be ensured. This dashboard assesses the error margins for xG."),
-                html.Li("Teams can use thisthe tool for summary of own performances or to gain insight into opponents xG patterns."),
+                html.Li("New, more complex mastchday metrics reliability must be ensured. This dashboard assesses the error margins for xG."),
+                html.Li("Teams can use the tool for summary of own performances or to gain insight into opponents xG patterns."),
               
             ], style={'color': 'white'}),
     
