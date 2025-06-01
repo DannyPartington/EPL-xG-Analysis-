@@ -3,11 +3,7 @@
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-🚀 Live Demo
-🔗 View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
 
-
------------------------------------------------------------------------------------------------------------------------------
 Overview
 
 This project investigates the reliability and analytic value of Expected Goals (xG) — a widely used but often misunderstood metric in modern football. While xG is frequently cited by analysts, pundits, and clubs, most fans and even professionals struggle to explain how it's actually calculated or whether it deserves the level of trust it receives.
@@ -33,10 +29,14 @@ How team tactics and other factors shape xG trends
 
 This analysis was built and documented through a series of Jupyter notebooks, which guide the entire journey from initial data collection and cleaning, to survey analysis, exploratory data visualizations, and final insights. The full workflow — including code, reasoning, and commentary — can be found in the /Notebooks folder.
 
-As a final step, I built a Dash web app to bring the key visualizations and findings together in an interactive format. While the real depth lies in the notebooks, the app offers a polished, accessible summary for exploring xG trends across the 23/24 EPL season.
+As a final step, I built a Dash web app to bring the key visualizations and findings together in an interactive dashboard format. While the real depth lies in the notebooks, the app offers a polished, accessible summary for exploring xG trends across the 23/24 EPL season.
 
 -----------------------------------------------------------------------------------------------------------------------------
+🚀 Live Demo
+🔗 You cCn View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
 
+
+-----------------------------------------------------------------------------------------------------------------------------
 
 
 
