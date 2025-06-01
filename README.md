@@ -33,7 +33,7 @@ As a final step, I built a Dash web app to bring the key visualizations and find
 
 -----------------------------------------------------------------------------------------------------------------------------
 🚀 Live Demo
-🔗 You cCn View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
+🔗 You Can View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
 
 
 -----------------------------------------------------------------------------------------------------------------------------
