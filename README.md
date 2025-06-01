@@ -3,6 +3,11 @@
 
 -----------------------------------------------------------------------------------------------------------------------------
 
+🚀 Live Demo
+🔗 View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
+
+
+-----------------------------------------------------------------------------------------------------------------------------
 Overview
 
 This project investigates the reliability and analytic value of Expected Goals (xG) — a widely used but often misunderstood metric in modern football. While xG is frequently cited by analysts, pundits, and clubs, most fans and even professionals struggle to explain how it's actually calculated or whether it deserves the level of trust it receives.
@@ -60,11 +65,7 @@ Integrate non-shot xG opportunities (e.g., dangerous build up, pre-assist data) 
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-🚀 Live Demo
-🔗 View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
 
-
------------------------------------------------------------------------------------------------------------------------------
 
  
 📊 Screenshots
