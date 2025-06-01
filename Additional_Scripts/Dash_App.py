@@ -4,7 +4,7 @@ from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
-from Additional_Scripts.App_Functions import (
+from App_Functions import (
     plot_xg_error_histogram, plot_xg_error_vs_total_goals,
     calculate_xg_league_table, calculate_xg_to_goals, 
     merge_and_rank_xg, style_xg_rankings,
