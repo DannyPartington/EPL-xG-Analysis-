@@ -186,15 +186,6 @@ def calculate_xg_league_table(df, league_table):
     return xG_league_table.to_dict('records')  # ✅ Converts DataFrame into Dash-compatible format
 
 
-
-
-
-
-  
-
-
-
-
 def calculate_xg_to_goals(df, league_table):
     # ✅ Step 1: Aggregate Home & Away xG and Goals
     home_xg_goals = df.groupby('Home')[['Home_xg', 'Home_Goals']].sum().reset_index()
