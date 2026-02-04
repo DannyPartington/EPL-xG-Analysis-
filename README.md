@@ -32,8 +32,8 @@ This analysis was built and documented through a series of Jupyter notebooks, wh
 As a final step, I built a Dash web app to bring the key visualizations and findings together in an interactive dashboard format. While the real depth lies in the notebooks, the app offers a polished, accessible summary for exploring xG trends across the 23/24 EPL season.
 
 -----------------------------------------------------------------------------------------------------------------------------
-🚀 Live Demo
-🔗 You Can View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
+Live Demo
+You Can View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
 
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ As a final step, I built a Dash web app to bring the key visualizations and find
 
 
 
-🔍 Key Results & Applications
+ Key Results & Applications
 
  The disparity, or ‘error’, between xG and actual goals scored in a game is normally distributed around 0 — suggesting that while xG is not perfect at predicting individual match outcomes, it is statistically unbiased and reliable over a large sample of games. 
 
@@ -57,7 +57,7 @@ The interactive dashboard offers deep insight into league-wide and team-specific
 -----------------------------------------------------------------------------------------------------------------------------
 
 
-📌 Future Work
+Future Work
 Compare year-to-year xG league tables and actual tables to assess form prediction potential
 Add player-specific xG dashboards and finishing efficiency ratings
 Integrate non-shot xG opportunities (e.g., dangerous build up, pre-assist data) into a new or refined model to build on current statistics and paint an even more in depth picture of the game 
@@ -68,7 +68,7 @@ Integrate non-shot xG opportunities (e.g., dangerous build up, pre-assist data) 
 
 
  
-📊 Screenshots
+Screenshots
  See below still images of the dashboard menu and one of its tabs.
 
 
@@ -79,7 +79,7 @@ Integrate non-shot xG opportunities (e.g., dangerous build up, pre-assist data) 
 
 
 -----------------------------------------------------------------------------------------------------------------------------
-📁 Folder Structure
+Folder Structure
 
 EPL-xG-Analysis/
 ├── Notebooks/ # Jupyter notebooks for workflow including data cleaning, survey, analysis.
@@ -93,7 +93,7 @@ EPL-xG-Analysis/
 
 ----------------------
 
-🧪 How to Run This Project Locally
+How to Run This Project Locally
 
 You can interact with the full dashboard live here — no setup needed.
 
@@ -135,12 +135,12 @@ Generate and review the visualisations used in the dashboard
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-📚 Tools & Libraries Used
+Tools & Libraries Used
  Pandas, Numpy, Plotly, Dash, Sklearn, HTML 
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-📘 Data Sources
+Data Sources
 Public xG datasets scraped or aggregated from free football analytics resources
 Team stats derived from match-level event data
 
