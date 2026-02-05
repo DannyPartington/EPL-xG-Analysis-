@@ -243,7 +243,7 @@ def render_content(pathname):
              
                  html.P(
                      "Therefore this website both investigates the accuracy of xG, and presents a range of key insights around xG "
-                     "from the 23/24 season, which are briefed below:",
+                     "from the 23/24 season.",
                      style={'color': 'white', 'textAlign': 'center', 'marginBottom': '30px'}
                  ),
              ], style={'maxWidth': '900px', 'margin': 'auto'}),
@@ -274,14 +274,14 @@ def render_content(pathname):
     
             html.H3("Key Insights & Recommendations", style={'color': '#17a2b8', 'marginTop': '30px'}),
             html.Ul([
-                html.Li("Incorporating non-shot expected goal scenarios would create a more comprehensive metric. There are many scenarios where observers would 'expect' a goal, even if a shot isn't taken."),
+                html.Li("There are many scenarios in football where observers would 'expect' a goal, even if a shot isn't taken.Incorporating non-shot expected goal scenarios would create a more comprehensive metric of the most threatening team."),
                 html.Li("xG could be a predictive tool for turn of form, as xG standings more closley align with the following seasons standings rather than the corresponsing standings."),
                 html.Li("Teams with low xG conversion rates could benefit from focusing on improving shot quality over volume."),
             ], style={'color': 'white'}),
     
             html.P([
-                "To read the full analysis and see detailed recommendations, visit the ",
-                html.A("GitHub repository", href="https://github.com/yourrepo", target="_blank", style={'color': '#17a2b8'}),
+                "To read the full analysis and detailed recommendations, explore my Jupyter Notebooks which can be mound in my ",
+                html.A("GitHub repository", href="https://github.com/DannyPartington/", target="_blank", style={'color': '#17a2b8'}),
                 "."
             ], style={'color': 'white', 'marginTop': '15px'}),
             
