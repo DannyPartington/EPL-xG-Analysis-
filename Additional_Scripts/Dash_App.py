@@ -255,7 +255,7 @@ def render_content(pathname):
             html.Footer([
                 html.P([
                     "Created as part of a data analytics investigation. ",
-                    html.A("View on GitHub", href="https://github.com/yourprofile", target="_blank", style={'color': '#17a2b8'})
+                    html.A("View on GitHub", href="https://github.com/DannyPartington", target="_blank", style={'color': '#17a2b8'})
                 ], style={'textAlign': 'center', 'color': 'white', 'marginTop': '20px'})
             ])
         ], fluid=True)
@@ -281,7 +281,7 @@ def render_content(pathname):
     
             html.P([
                 "To read the full analysis and detailed recommendations, explore my Jupyter Notebooks which can be mound in my ",
-                html.A("GitHub repository", href="https://github.com/DannyPartington/", target="_blank", style={'color': '#17a2b8'}),
+                html.A("GitHub repository", href="https://github.com/DannyPartington/EPL-xG-Analysis-", target="_blank", style={'color': '#17a2b8'}),
                 "."
             ], style={'color': 'white', 'marginTop': '15px'}),
             
