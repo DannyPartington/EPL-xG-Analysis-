@@ -109,7 +109,7 @@ def render_content(pathname):
     if pathname == '/' or pathname == '/home':
 
         return dbc.Container([
-            # 🔹 Intro Section
+            # Intro Section
             html.Div([
                 html.H1("EPL Expected Goals (xG) Analysis — 2023/24", 
                         style={'textAlign': 'center', 'color': '#17a2b8', 'marginTop': '20px'}),
@@ -130,7 +130,7 @@ def render_content(pathname):
             html.H2("Explore the Dashboard", style={'color': '#17a2b8', 'textAlign': 'center', 'marginTop': '20px'}),
             
             
-            # 🔹 Clickable Section Cards
+            # Clickable Section Cards
            dbc.Row([
                 dbc.Col(
                     dcc.Link(
@@ -179,7 +179,6 @@ def render_content(pathname):
 
 
                                         
-            
             dbc.Row([
                 dbc.Col(
                     dcc.Link(
@@ -214,7 +213,7 @@ def render_content(pathname):
 
 
 
-             # 🔹 Why Are We Doing This? Section
+             # Why Are We Doing This? Section
              html.Div([
                  html.H2("Why Are We Doing This?", style={'color': '#17a2b8', 'textAlign': 'center', 'marginTop': '30px'}),
              
@@ -251,7 +250,7 @@ def render_content(pathname):
              html.Hr(style={'borderColor': '#17a2b8'}),
 
 
-            # 🔹 Footer / Small Credit Section
+            # Footer / Small Credit Section
             html.Footer([
                 html.P([
                     "Created as part of a data analytics investigation. ",
@@ -280,7 +279,7 @@ def render_content(pathname):
             ], style={'color': 'white'}),
     
             html.P([
-                "To read the full analysis and detailed recommendations, explore my Jupyter Notebooks which can be mound in my ",
+                "To read the full analysis and detailed recommendations, explore my Jupyter Notebooks which can be found in my ",
                 html.A("GitHub repository", href="https://github.com/DannyPartington/EPL-xG-Analysis-", target="_blank", style={'color': '#17a2b8'}),
                 "."
             ], style={'color': 'white', 'marginTop': '15px'}),
@@ -358,7 +357,7 @@ def render_content(pathname):
                 }
             ),
 
-        # 🔹 Table
+        # Table
         dash_table.DataTable(
             data=calculate_xg_league_table(cleaned_prem_data, league_table),  
             columns=[{"name": col, "id": col} for col in ["Rank", "Team", "Points", "Scored", "Conceded", "Goal_Difference"]],
@@ -429,7 +428,7 @@ def render_content(pathname):
 
 
 @app.callback(
-    Output('team-summary-table', 'children'),  # ✅ Add summary table
+    Output('team-summary-table', 'children'),  
     Output('xg-vs-possession-home', 'figure'),
     Output('xg-vs-possession-away', 'figure'),
     Output('xg-vs-formation', 'figure'),
@@ -439,12 +438,12 @@ def render_content(pathname):
     Input('team-selector', 'value')
 )
 def update_team_analysis(team):
-    # ✅ Generate summary table for the selected team
+    #Generate summary table for the selected team
     summary_table = generate_team_summary_table(
         team, xg_goal_ratio_table, league_table, xg_league_table, avg_xG, avg_xGA
     )
 
-    # ✅ Generate all the graphs
+    #Generate all the graphs
     fig_home, fig_away = analyze_xg_vs_possession(team, team_data)
     formation_fig = analyze_xg_vs_formation(team, team_data)
     shots_fig = analyze_xg_vs_shots(team, team_data)
@@ -455,11 +454,11 @@ def update_team_analysis(team):
 
 
 @app.callback(
-    Output('league-xg-content', 'children'),  # Update this output
+    Output('league-xg-content', 'children'), 
     Input('league-xg-selection', 'value')
 )
 def update_league_xg_content(selected_section):
-    print(f"Tab selected: {selected_section}")  # Debugging output
+    print(f"Tab selected: {selected_section}")  
 
     if selected_section == 'chance-creation':
         return dbc.Container([
