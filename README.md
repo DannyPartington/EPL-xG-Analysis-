@@ -32,7 +32,6 @@ This analysis was built and documented through a series of Jupyter notebooks, wh
 As a final step, I built a Dash web app to bring the key visualizations and findings together in an interactive dashboard format. While the real depth lies in the notebooks, the app offers a polished, accessible summary for exploring xG trends across the 23/24 EPL season.
 
 -----------------------------------------------------------------------------------------------------------------------------
-Live Demo
 You Can View the Live Dashboard at: https://epl23-24-xg-analysis-app.onrender.com
 
 
