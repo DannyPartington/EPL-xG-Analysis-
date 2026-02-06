@@ -22,10 +22,10 @@ These results led me to ask: Can we trust xG? And if so, what can it really tell
 
 Thus, a full analysis of the 2023/24 Premier League season was conducted — exploring:
 
-How accurate xG is as a predictive tool for goals
-Which teams over- or under-perform their xG
-Whether league standings would change if based only on xG
-How team tactics and other factors shape xG trends
+How accurate xG is as a predictive tool for goals.
+Which teams over- or under-perform their xG.
+Whether league standings would change if based only on xG.
+How team tactics and other factors shape xG trends.
 
 This analysis was built and documented through a series of Jupyter notebooks, which guide the entire journey from initial data collection and cleaning, to survey analysis, exploratory data visualizations, and final insights. The full workflow — including code, reasoning, and commentary — can be found in the /Notebooks folder.
 
