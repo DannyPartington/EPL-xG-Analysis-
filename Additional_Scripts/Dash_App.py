@@ -247,7 +247,7 @@ def render_content(pathname):
                  ),
              ], style={'maxWidth': '900px', 'margin': 'auto'}),
              
-             html.Hr(style={'borderColor': '#17a2b8'}),
+            
 
 
             # Footer / Small Credit Section
