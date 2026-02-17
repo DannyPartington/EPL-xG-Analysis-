@@ -253,21 +253,31 @@ def render_content(pathname):
             # Footer / Small Credit Section
             dbc.Container(
                 html.Footer([
+            
                     html.P([
                         "Created as part of a data analytics investigation. ",
                         html.A("View on GitHub",
                                href="https://github.com/DannyPartington",
                                target="_blank",
-                               style={'color': '#17a2b8'}),
-                        " You can see more of my work and experience, or how to get in touch on my Website. ",
+                               style={'color': '#17a2b8'})
+                    ]),
+            
+                    html.P([
+                        "You can see more of my work and experience, or how to get in touch on my Website. ",
                         html.A("Here",
                                href="https://dannypartington.github.io/Analytics-Portfolio/",
                                target="_blank",
                                style={'color': '#17a2b8'})
-                    ], style={'textAlign': 'center', 'color': 'white', 'marginTop': '20px'})
-                ]),
+                    ])
+            
+                ], style={
+                    'textAlign': 'center',
+                    'color': 'white',
+                    'marginTop': '20px'
+                }),
                 fluid=True
             )
+
 
 
 
