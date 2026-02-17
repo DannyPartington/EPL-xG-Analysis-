@@ -259,6 +259,14 @@ def render_content(pathname):
             ])
         ], fluid=True)
 
+             html.Footer([
+                html.P([
+                    "You can see more of my work and experience, or how to get in touch on my Website. ",
+                    html.A("Here", href="https://dannypartington.github.io/Analytics-Portfolio/", target="_blank", style={'color': '#17a2b8'})
+                ], style={'textAlign': 'center', 'color': 'white', 'marginTop': '20px'})
+            ])
+        ], fluid=True)
+
     elif pathname == '/about':
 
         return dbc.Container([
