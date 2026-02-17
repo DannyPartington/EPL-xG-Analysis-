@@ -323,7 +323,7 @@ def render_content(pathname):
     
             html.P([
                 "More of my data analysis projects are available on my ",
-                html.A("personal portfolio site", href="https://yourwebsite.com", target="_blank", style={'color': '#17a2b8'}),
+                html.A("personal portfolio site", href="https://dannypartington.github.io/Analytics-Portfolio/", target="_blank", style={'color': '#17a2b8'}),
                 "."
             ], style={'color': 'white', 'textAlign': 'center', 'marginTop': '20px'})
         ], fluid=True)
