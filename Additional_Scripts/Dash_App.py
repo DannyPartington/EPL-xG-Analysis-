@@ -278,9 +278,9 @@ def render_content(pathname):
                 }),
                 fluid=True
             )
+        ], fluid=True)
 
-
-
+    
 
 
     elif pathname == '/about':
